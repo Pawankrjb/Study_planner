@@ -203,7 +203,7 @@ function Signup() {
             to="/login"
             className="font-semibold text-black underline underline-offset-4 hover:text-gray-600"
           >
-            Sign up
+            Login
           </Link>
         </p>
 
