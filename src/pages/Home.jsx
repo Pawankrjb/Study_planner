@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate ,useNavigate} from 'react-router-dom';
 import api from '../api.js';
 import Navbar from '../component/Navbar.jsx';
 import Card from '../component/Card.jsx';
@@ -8,11 +8,12 @@ import Footer from '../component/Footer.jsx';
 function Home() {
   const [user, setUser] = useState(null);
   const [status, setStatus] = useState('loading');
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function checkSession() {
       try {
-        const response = await api.get('/user/profile');
+        const response = await api.get('/profile');
         setUser(response.data);
         setStatus('logged-in');
       } catch (error) {
@@ -34,9 +35,12 @@ function Home() {
     return <Navigate to="/signup" replace />;
   }
 
+  // if (status === 'error') {
+  //   return <p className="p-8">Could not check your session. Please refresh.</p>;
+  // }
   if (status === 'error') {
-    return <p className="p-8">Could not check your session. Please refresh.</p>;
-  }
+  return <Navigate to="/signup" replace />;
+}
 
   return (
     <>
@@ -60,6 +64,7 @@ function Home() {
 
             <button
               type="button"
+               onClick={() => navigate('/assessment')}
               className="ml-50 rounded-lg border border-gray-300 bg-black px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800 hover:shadow-lg"
             >
               Take Assessment <span className="ml-2">→</span>

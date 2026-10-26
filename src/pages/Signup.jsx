@@ -28,7 +28,7 @@ function Signup() {
 
     try {
       // formData has already been validated and transformed by Zod.
-      await api.post('/user/signup', formData);
+      await api.post('/signup', formData);
       navigate('/', { replace: true });
     } catch (error) {
       setServerError(getErrorMessage(error));

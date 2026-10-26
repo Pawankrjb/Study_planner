@@ -24,7 +24,7 @@ function Login() {
     setServerError('');
 
     try {
-      const response = await api.post('/user/login', formData);
+      const response = await api.post('/login', formData);
 
       console.log('Login successful:', response.data);
 
