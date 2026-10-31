@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Navigate ,useNavigate} from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import api from '../api.js';
 import Navbar from '../component/Navbar.jsx';
 import Card from '../component/Card.jsx';
@@ -7,14 +7,16 @@ import Footer from '../component/Footer.jsx';
 
 function Home() {
   const [user, setUser] = useState(null);
+  // const [recommand,setRecommand]=useState("No recommendation yet")
   const [status, setStatus] = useState('loading');
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     async function checkSession() {
       try {
         const response = await api.get('/profile');
         setUser(response.data);
+         console.log("Profile Data:", response.data);
         setStatus('logged-in');
       } catch (error) {
         if (error.response?.status === 401) {
@@ -39,8 +41,8 @@ function Home() {
   //   return <p className="p-8">Could not check your session. Please refresh.</p>;
   // }
   if (status === 'error') {
-  return <Navigate to="/signup" replace />;
-}
+    return <Navigate to="/signup" replace />;
+  }
 
   return (
     <>
@@ -64,7 +66,7 @@ function Home() {
 
             <button
               type="button"
-               onClick={() => navigate('/assessment')}
+              onClick={() => navigate('/assessment')}
               className="ml-50 rounded-lg border border-gray-300 bg-black px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800 hover:shadow-lg"
             >
               Take Assessment <span className="ml-2">→</span>
@@ -77,7 +79,8 @@ function Home() {
 
             <h2 className="mt-6 text-2xl font-bold text-black">
               Top Match:{' '}
-              <span className="text-gray-500">No recommendation yet</span>
+              <span className="text-gray-500">{ user?.Recommand?.[0]?.career || "No Recommendation Found"}
+              </span>
             </h2>
 
             <p className="mt-4 leading-relaxed text-gray-600">
@@ -96,7 +99,6 @@ function Home() {
           <Card />
         </section>
 
-        
         <div className="m-10 ml-30 rounded-2xl  max-w-[1400px] border   border-gray-200 bg-white p-8 text-black shadow-lg">
           <h1 className="mb-6 text-3xl font-bold">How It Works</h1>
 

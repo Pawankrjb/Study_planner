@@ -4,20 +4,23 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleFeature = () => {
-    if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => {
-        document.getElementById('features')?.scrollIntoView({
-          behavior: 'smooth',
-        });
-      }, 300);
-    } else {
+ const handleFeature = (e) => {
+  e.preventDefault();
+
+  if (location.pathname !== '/') {
+    navigate('/');
+    setTimeout(() => {
       document.getElementById('features')?.scrollIntoView({
         behavior: 'smooth',
       });
-    }
-  };
+    }, 300);
+  } else {
+    document.getElementById('features')?.scrollIntoView({
+      behavior: 'smooth',
+    });
+  }
+};
+ 
  const handleLogout = async (e) => {
   e.preventDefault();
 
@@ -50,13 +53,13 @@ function Navbar() {
           About
         </NavLink>
 
-        <a
-          href="#features"
-          onClick={handleFeature}
-          className="text-gray-400 transition hover:text-white"
-        >
-          Feature
-        </a>
+      <button
+  type="button"
+  onClick={handleFeature}
+  className="text-gray-400 transition hover:text-white"
+>
+  Feature
+</button>
 
         <NavLink
           to="/costomer"

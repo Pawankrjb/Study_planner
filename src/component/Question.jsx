@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import api from '../api.js';
+import { useNavigate } from 'react-router-dom';
 
 
 function Question() {
-  
+  const navigate=useNavigate();
   const [question, setQuestion] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
-
+ 
   useEffect(() => {
     const getquestion = async () => {
       try {
@@ -37,7 +38,8 @@ function Question() {
       });
 
       console.log('ML Recommendation:', res.data);
-      alert(JSON.stringify(res.data, null, 2));
+      alert("Your test is submitted");
+       navigate('/');
     } catch (error) {
       console.error(
         'Assessment error:',
