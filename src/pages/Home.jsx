@@ -4,19 +4,20 @@ import api from '../api.js';
 import Navbar from '../component/Navbar.jsx';
 import Card from '../component/Card.jsx';
 import Footer from '../component/Footer.jsx';
+import backgroundImage from '../assets/backimage.jpg';
 
 function Home() {
   const [user, setUser] = useState(null);
   // const [recommand,setRecommand]=useState("No recommendation yet")
   const [status, setStatus] = useState('loading');
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     async function checkSession() {
       try {
         const response = await api.get('/profile');
         setUser(response.data);
-         console.log("Profile Data:", response.data);
+        console.log('Profile Data:', response.data);
         setStatus('logged-in');
       } catch (error) {
         if (error.response?.status === 401) {
@@ -46,7 +47,36 @@ function Home() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#1e1c1c]  p-8 text-white">
+      <main
+        className="min-h-screen bg-[#1e1c1c] p-8 text-white"
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          e.currentTarget.style.backgroundImage = `
+    radial-gradient(
+      200px circle at ${x}px ${y}px,
+      transparent 0%,
+      #1e1c1c 80%
+    ),
+    url(${backgroundImage})
+  `;
+        }}
+        style={{
+          backgroundImage: `
+    radial-gradient(
+      200px circle at 50% 50%,
+      transparent 0%,
+      #1e1c1c 80%
+    ),
+    url(${backgroundImage})
+  `,
+          backgroundSize: 'auto, cover',
+          backgroundPosition: '0 0, center',
+        }}
+      >
         <Navbar></Navbar>
         <div className="flex gap-10 mt-10 m-20">
           <div className="h-80 w-200 ml-10 rounded-2xl border border-gray-200 bg-white text-black shadow-lg">
@@ -79,7 +109,8 @@ function Home() {
 
             <h2 className="mt-6 text-2xl font-bold text-black">
               Top Match:{' '}
-              <span className="text-gray-500">{ user?.Recommand?.[0]?.career || "No Recommendation Found"}
+              <span className="text-gray-500">
+                {user?.Recommand?.[0]?.career || 'No Recommendation Found'}
               </span>
             </h2>
 

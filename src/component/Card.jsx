@@ -1,7 +1,10 @@
 import React from 'react';
 import Cardmessages from '../utils/Cardmessages.js';
+import { useNavigate } from 'react-router-dom';
+
 
 function Card() {
+  const navigate=useNavigate();
   return (
     <div className="mx-auto mt-10 grid w-full max-w-[1400px] grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {Cardmessages.map((messages) => (
@@ -19,7 +22,7 @@ function Card() {
 
           <button
             type="button"
-            onClick={() => console.log(messages.title)}
+            onClick={() =>  navigate(messages.path)}
             className="mt-auto w-full rounded-lg border border-slate-200 bg-black px-4 py-3 text-base font-semibold text-white transition-all duration-300 hover:bg-slate-800"
           >
             {messages.buttonText}
