@@ -175,16 +175,7 @@ function PersonalityTest() {
             }
           </p>
 
-         <button
-  onClick={() => {
-    if (window.confirm("Are you sure you want to exit the test?")) {
-      navigate("/take-test");
-    }
-  }}
-  className="bg-black text-white px-5 py-2 rounded-lg mb-6"
->
-  ✕ Exit Test
-</button>
+       
 
         </div>
       </div>
@@ -198,7 +189,7 @@ function PersonalityTest() {
         onClick={() => navigate(-1)}
         className="bg-black text-white px-5 py-2 rounded-lg mb-6"
       >
-        ← Back
+         ✕ Exit Test
       </button>
 
       <div className="max-w-3xl mx-auto">

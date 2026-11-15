@@ -37,7 +37,7 @@ function TakeTest() {
           </p>
 
           <p className="mb-2">10 Questions</p>
-          <p className="mb-6">15 Minutes</p>
+          <p className="mb-6">10 Minutes</p>
 
           <button
             onClick={() => navigate("/aptitude-test")}

@@ -17,6 +17,8 @@ import Card from './component/Card';
 import TakeTest from './corefeature/TakeTest';
 import AptitudeTest from './corefeature/AptitudeTest';
 import PersonalityTest from './corefeature/Personality';
+import CourseComparison from './features/CourseComparison';
+
 
 import Smart_career from './features/Smart_career';
 
@@ -32,14 +34,17 @@ function App() {
       <Route path="/assessment" element={<Assessment />} />
       <Route path="/career-recommendation" element={<Smart_career />} />
       <Route path="/take-test" element={<TakeTest/>} />
-      <Route path="/career-comparison" element={<CareerComparison />} />
-      <Route path="/college-recommendation" element={<CollegeRecommendation />}/>
+      {/* <Route path="/career-comparison" element={<CareerComparison />} /> */}
+      <Route path="/college-recommendation" element={< CareerDetails/>}/>
       <Route path="/study-planner" element={<StudyPlanner />} />
       <Route path="/what-if-analysis" element={<WhatIfAnalysis />} />
       <Route path="/career-details" element={<CareerDetails />} />
       <Route path="/classroom" element={<Classroom />} />
       <Route path="/aptitude-test" element={<AptitudeTest />} />
       <Route path="/personality-test" element={<PersonalityTest />} />
+      <Route path="/career-comparison" element={<CourseComparison />}
+
+/>
       {/* // <Route path="/question" element={<Question />} ></Route> */}
     </Routes>
   );

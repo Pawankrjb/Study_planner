@@ -69,7 +69,7 @@ function AptitudeTest() {
 
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [time, setTime] = useState(15 * 60);
+  const [time, setTime] = useState(10 * 60);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {

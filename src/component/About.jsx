@@ -2,13 +2,42 @@
 import Footer from './Footer';
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
+import backgroundImage from '../assets/backimage.jpg';
 
 
 
 function About() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-[#1e1c1c] p-8 text-white">
+    <div className="min-h-screen bg-[#1e1c1c] p-8 text-white"
+      onMouseMove={(e) => {
+               const rect = e.currentTarget.getBoundingClientRect();
+     
+               const x = e.clientX - rect.left;
+               const y = e.clientY - rect.top;
+     
+               e.currentTarget.style.backgroundImage = `
+         radial-gradient(
+           200px circle at ${x}px ${y}px,
+           transparent 0%,
+           #1e1c1c 80%
+         ),
+         url(${backgroundImage})
+       `;
+             }}
+             style={{
+               backgroundImage: `
+         radial-gradient(
+           200px circle at 50% 50%,
+           transparent 0%,
+           #1e1c1c 80%
+         ),
+         url(${backgroundImage})
+       `,
+               backgroundSize: 'auto, cover',
+               backgroundPosition: '0 0, center',
+             }}
+    >
       <Navbar />
 
       <section className="max-w-[1300px]  ml-30 px-6 py-12 text-black md:px-10 md:py-16">
