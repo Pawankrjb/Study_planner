@@ -98,17 +98,64 @@ function AptitudeTest() {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
-  if (submitted) {
+ if (submitted) {
+    const wrongAnswers = questions
+      .map((question, index) => ({
+        ...question,
+        questionNumber: index + 1,
+        selectedAnswer: answers[index] || "Not answered"
+      }))
+      .filter(question => question.selectedAnswer !== question.answer);
+
     return (
-      <div className="min-h-screen bg-[#1e1c1c] text-white flex items-center justify-center">
-        <div className="bg-white text-black p-10 rounded-2xl text-center">
-          <h1 className="text-3xl font-bold mb-4">Test Completed!</h1>
+      <div className="min-h-screen bg-[#1e1c1c] text-white flex items-center justify-center p-6">
+        <div className="bg-white text-black p-10 rounded-2xl text-center max-w-3xl w-full">
+
+          <h1 className="text-3xl font-bold mb-4">
+            Test Completed!
+          </h1>
+
           <p className="text-xl mb-2">
             Your Score: {score}/10
           </p>
+
           <p className="mb-6">
             Percentage: {score * 10}%
           </p>
+
+          {/* Incorrect Answers */}
+          <div className="text-left mt-8 mb-6">
+
+            <h2 className="text-xl font-bold mb-4">
+              Incorrect Answers ({wrongAnswers.length})
+            </h2>
+
+            {wrongAnswers.length === 0 ? (
+              <p className="text-green-700 font-semibold">
+                Excellent! All answers are correct.
+              </p>
+            ) : (
+              <div className="space-y-4">
+                {wrongAnswers.map(question => (
+                  <div key={question.questionNumber} className="border border-gray-300 rounded-lg p-4">
+
+                    <h3 className="font-semibold mb-2">
+                      Q{question.questionNumber}. {question.question}
+                    </h3>
+
+                    <p className="text-red-700 mb-1">
+                      Your Answer: {question.selectedAnswer}
+                    </p>
+
+                    <p className="text-green-700 font-semibold">
+                      Correct Answer: {question.answer}
+                    </p>
+
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
           <button
             onClick={() => navigate("/take-test")}
@@ -116,6 +163,7 @@ function AptitudeTest() {
           >
             Back to Tests
           </button>
+
         </div>
       </div>
     );

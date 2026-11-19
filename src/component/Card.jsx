@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function Card() {
   const navigate=useNavigate();
   return (
-    <div className="mx-auto mt-10 grid w-full max-w-[1400px] grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="mx-auto mt-10 grid w-full max-w-[1400px] grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {Cardmessages.map((messages) => (
         <div
           key={messages.id}

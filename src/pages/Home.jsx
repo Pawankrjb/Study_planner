@@ -77,7 +77,7 @@ function Home() {
           backgroundPosition: '0 0, center',
         }}
       >
-        <Navbar></Navbar>
+        <Navbar  />
         <div className="flex gap-10 mt-10 m-20">
           <div className="h-80 w-200 ml-10 rounded-2xl border border-gray-200 bg-white text-black shadow-lg">
             <h1 className="mt-3 pl-12 pr-20 p-4 text-gray-500">

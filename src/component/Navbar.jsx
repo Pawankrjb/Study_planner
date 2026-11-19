@@ -1,6 +1,6 @@
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 
-function Navbar() {
+function Navbar( ) {
   const navigate = useNavigate();
   const location = useLocation();
 

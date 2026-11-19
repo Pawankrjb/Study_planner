@@ -174,7 +174,14 @@ function PersonalityTest() {
               ).join(", ")
             }
           </p>
-
+            <div className="text-center mt-8">
+  <button
+    onClick={() => navigate("/take-test")}
+    className="bg-black text-white px-6 py-3 rounded-lg"
+  >
+    Back to Tests
+  </button>
+</div>
        
 
         </div>
